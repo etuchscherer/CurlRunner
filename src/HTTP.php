@@ -21,4 +21,5 @@ class HTTP
   
   const PUT = 'PUT';
   
+  const CONTENT_TYPE_JSON = "'Content-Type: application/json; charset=utf-8'";
 }

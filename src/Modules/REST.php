@@ -52,4 +52,16 @@ class REST extends CurlRequest
     $this->postFields($params);
     return $this->send();
   }
+  
+  /**
+   * Sets the content type to application/json
+   * @return bool.
+   */
+  public function setJSONContent() {
+    $this->protectHandle('set content type');
+    curl_setopt($this->handle, CURLOPT_HTTPHEADER, array(                                                                          
+      HTTP::CONTENT_TYPE_JSON
+    ));
+    return $this;
+  }
 }

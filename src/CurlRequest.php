@@ -2,6 +2,7 @@
 
 namespace Curl;
 
+use Curl\CurlResponse;
 use Curl\CurlException;
 
 /**
@@ -40,6 +41,12 @@ class CurlRequest
    * @var string
    */
   public $response;
+  
+  /**
+   * Use the returned response?
+   * @var boolean
+   */
+  public $returnTransfer;
   
   /**
    * The user agent;
@@ -132,6 +139,17 @@ class CurlRequest
     $this->closeSession();
     $this->initSession();
   }
+  
+  /**
+   * If set to true, the response will be
+   * cached as a response variable.
+   * @param boolean $boolean
+   * @return \Curl\CurlRequest
+   */
+  public function returnTransfer($boolean) {
+    $this->returnTransfer = $boolean;
+    return $this;
+  }
 
   /**
    * Returns true on success and false on failure.
@@ -144,6 +162,12 @@ class CurlRequest
     }
 
     $this->clearErrors();
+    
+    if ($this->returnTransfer) {
+      $this->response = new CurlResponse(curl_exec($this->handle));
+      return (bool) $this->response;
+    }
+    
     return curl_exec($this->handle);
   }
 
@@ -234,7 +258,7 @@ class CurlRequest
    * Throws an exception if the handle is uninitialized.
    * @param string $action action were protecting the handle from
    */
-  private function protectHandle($action) {
+  protected function protectHandle($action) {
     if (!$this->isInitialized()) {
       $this->throwUninitializedException($action);
     }

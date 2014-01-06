@@ -4,6 +4,7 @@ namespace Tests\Modules;
 
 use PHPUnit_Framework_TestCase;
 use Curl\Modules\REST;
+use Curl\HTTP;
 
 /**
  * Description of RESTTest
@@ -49,6 +50,12 @@ class RESTTest extends PHPUnit_Framework_TestCase {
   public function testCanPutDataToServer() {
     $sent = $this->curlRequest->put('http://loopback.local.com', array('bar' => 'bell'));
     $this->assertTrue($sent);
+  }
+  
+  public function testCanSetJsonContentType() {
+    $this->curlRequest->setJSONContent();
+    $this->curlRequest->get('http://loopback.local.com');
+    $this->assertEquals($this->curlRequest->info(CURLINFO_CONTENT_TYPE), HTTP::CONTENT_TYPE_JSON);
   }
   
   
