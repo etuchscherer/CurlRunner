@@ -27,22 +27,27 @@ class RESTTest extends PHPUnit_Framework_TestCase {
   }
   
   public function testCanPostDataToServer() {
-    $sent = $this->curlRequest->post('http://localhost:3000', array('foo' => 'bar'));
+    $sent = $this->curlRequest->post('http://loopback.local.com', array('foo' => 'bar'));
     $this->assertTrue($sent);
   }
   
   public function testCanDeleteDataToServer() {
-    $sent = $this->curlRequest->delete('http://localhost:3000', array('foo' => 'baz'));
+    $sent = $this->curlRequest->delete('http://loopback.local.com', array('foo' => 'baz'));
     $this->assertTrue($sent);
   }
   
   public function testCanPatchDataToServer() {
-    $sent = $this->curlRequest->patch('http://localhost:3000', array('bar' => 'bell'));
+    $sent = $this->curlRequest->patch('http://loopback.local.com', array('bar' => 'bell'));
     $this->assertTrue($sent);
   }
   
   public function testCanHeadDataToServer() {
-    $sent = $this->curlRequest->head('http://localhost:3000', array('bar' => 'bell'));
+    $sent = $this->curlRequest->head('http://loopback.local.com', array('bar' => 'bell'));
+    $this->assertTrue($sent);
+  }
+  
+  public function testCanPutDataToServer() {
+    $sent = $this->curlRequest->put('http://loopback.local.com', array('bar' => 'bell'));
     $this->assertTrue($sent);
   }
   
