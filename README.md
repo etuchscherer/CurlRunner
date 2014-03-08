@@ -62,23 +62,23 @@ GET to a service
 
     $this->curlRequest->get('http://example.com?foo=bar');
 
-Post to a service
+POST to a service
 
     $this->curlRequest->post('http://example.com', array('foo' => 'bar'));
 
-Delete to a service
+DELETE to a service
 
     $this->curlRequest->delete('http://example.com', array('foo' => 'bar'));
 
-Patch to a service
+PATCH to a service
 
     $this->curlRequest->patch('http://example.com', array('foo' => 'bar'));
 
-Put to a service
+PUT to a service
 
     $this->curlRequest->put('http://example.com', array('foo' => 'bar'));
     
-Head to a service
+HEAD to a service
 
     $this->curlRequest->head('http://example.com', array('foo' => 'bar'));
 
