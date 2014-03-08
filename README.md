@@ -29,6 +29,16 @@ Resetting the handler
     $this->curlRequest->setMethod('GET');
     $this->curlRequest->reset();
     $this->curlRequest->url('somewhere-else.com')->setMethod('POST');
+    
+Return a CurlResponse object, that represents the response
+
+    $this->curlRequest->returnTransfer(true);
+    $this->curlRequest->send(); // will return a cURL response object
+
+Returning true upon success, or false upon failure
+
+    // defaults to false
+    $this->curlRequest->returnTransfer(false);
 
 Sending the request
 
@@ -47,6 +57,10 @@ To instantiate
 To set JSON content type
 
     $this->curlRequest->setJSONContent();
+    
+GET to a service
+
+    $this->curlRequest->get('http://example.com?foo=bar');
 
 Post to a service
 
