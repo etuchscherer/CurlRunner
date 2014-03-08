@@ -44,7 +44,7 @@ class CurlRequestTest extends PHPUnit_Framework_TestCase {
   public function testCanResetAndSend() {
     $this->curlRequest->reset();
     $sent = $this->curlRequest->url('www.example.com')->setMethod('GET')->send();
-    $this->assertTrue($sent);
+    $this->assertInstanceOf('\Curl\CurlResponse', $sent);
   }
   
   public function testLastStatusCode() {

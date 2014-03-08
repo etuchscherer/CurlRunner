@@ -3,6 +3,7 @@
 namespace Curl\Modules;
 
 use Curl\CurlRequest;
+use Curl\CurlResponse;
 use Curl\HTTP;
 
 /**
@@ -14,7 +15,6 @@ class REST extends CurlRequest
 {
   
   public function __construct($url = null, $params = array()) {
-
     
     parent::__construct($url, $params);
   }
@@ -27,7 +27,7 @@ class REST extends CurlRequest
   
   public function get($url, $params = array()) {
     $this->url($url)->setMethod(HTTP::GET);
-    return $this->send();
+    return new CurlResponse($this->send());
   }
   
   public function head($url, $params = array()) {
@@ -59,9 +59,12 @@ class REST extends CurlRequest
    */
   public function setJSONContent() {
     $this->protectHandle('set content type');
+    $this->returnTransfer(true);
     curl_setopt($this->handle, CURLOPT_HTTPHEADER, array(                                                                          
       HTTP::CONTENT_TYPE_JSON
     ));
+    
+    curl_setopt($this->handle, CURLOPT_HEADER, true);
     return $this;
   }
 }

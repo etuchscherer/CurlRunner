@@ -28,34 +28,34 @@ class RESTTest extends PHPUnit_Framework_TestCase {
   }
   
   public function testCanPostDataToServer() {
-    $sent = $this->curlRequest->post('http://loopback.local.com', array('foo' => 'bar'));
+    $sent = $this->curlRequest->post('http://example.com', array('foo' => 'bar'));
     $this->assertTrue($sent);
   }
   
   public function testCanDeleteDataToServer() {
-    $sent = $this->curlRequest->delete('http://loopback.local.com', array('foo' => 'baz'));
+    $sent = $this->curlRequest->delete('http://example.com', array('foo' => 'baz'));
     $this->assertTrue($sent);
   }
   
   public function testCanPatchDataToServer() {
-    $sent = $this->curlRequest->patch('http://loopback.local.com', array('bar' => 'bell'));
+    $sent = $this->curlRequest->patch('http://example.com', array('bar' => 'bell'));
     $this->assertTrue($sent);
   }
   
   public function testCanHeadDataToServer() {
-    $sent = $this->curlRequest->head('http://loopback.local.com', array('bar' => 'bell'));
+    $sent = $this->curlRequest->head('http://example.com', array('bar' => 'bell'));
     $this->assertTrue($sent);
   }
   
   public function testCanPutDataToServer() {
-    $sent = $this->curlRequest->put('http://loopback.local.com', array('bar' => 'bell'));
+    $sent = $this->curlRequest->put('http://example.com', array('bar' => 'bell'));
     $this->assertTrue($sent);
   }
   
   public function testCanSetJsonContentType() {
     $this->curlRequest->setJSONContent();
-    $this->curlRequest->get('http://loopback.local.com');
-    $this->assertEquals($this->curlRequest->info(CURLINFO_CONTENT_TYPE), HTTP::CONTENT_TYPE_JSON);
+    $this->curlRequest->get('http://example.com');
+    $this->assertEquals('Content-Type: application/json; charset=utf-8', $this->curlRequest->info(CURLINFO_CONTENT_TYPE));
   }
   
   

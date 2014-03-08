@@ -1,0 +1,21 @@
+{
+    "name": "papersling/curl-runner",
+    "authors": [
+        {
+            "name": "Eric Tuchscherer",
+            "email": "eric@tuchscherer.me"
+        }
+    ],
+    "require": {
+        "d11wtq/boris": "dev-master"
+
+    },
+    "require-dev": {
+        "d11wtq/boris": "dev-master",
+        "phpunit/phpunit": "3.7.*@dev"
+
+    },
+    "autoload": {
+	  "classmap": ["src/", "tests/"]
+    }
+}

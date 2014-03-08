@@ -147,6 +147,7 @@ class CurlRequest
    * @return \Curl\CurlRequest
    */
   public function returnTransfer($boolean) {
+    curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, $boolean);
     $this->returnTransfer = $boolean;
     return $this;
   }
@@ -164,8 +165,7 @@ class CurlRequest
     $this->clearErrors();
     
     if ($this->returnTransfer) {
-      $this->response = new CurlResponse(curl_exec($this->handle));
-      return (bool) $this->response;
+      return new CurlResponse(curl_exec($this->handle));
     }
     
     return curl_exec($this->handle);
