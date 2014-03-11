@@ -256,7 +256,7 @@ class CurlRequest
 
   /**
    * Throws an exception if the handle is uninitialized.
-   * @param string $action action were protecting the handle from
+   * @param string $action action we're protecting the handle from
    */
   protected function protectHandle($action) {
     if (!$this->isInitialized()) {
